@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Kiyan's Portfolio</title>
+
+    <!-- ONLY ADD THIS TO HOMEPAGE -->
+    <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="home-page">
+    <div class="stars-container"></div>
+    <div class="content">
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="colleges.html">Dream Colleges</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero">
+            <h1 class="title-animation">Kiyanoosh Shahriari Kesheh</h1>
+            <h2 class="subtitle-animation">Aerospace Enthusiast • Future Pilot • Engineer</h2>
+        </div>
+    </div>
+
+    <!-- Star Controls -->
+    <div class="star-controls">
+        <div class="control-group">
+            <label for="starColor">Star Color</label>
+            <div class="slider-container">
+                <input type="color" id="starColor" value="#f1c40f">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="starCount">Star Count: <span class="star-count-value">500</span></label>
+            <div class="slider-container">
+                <input type="range" id="starCount" min="0" max="2500" value="500">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/cursor-effects.js"></script>
+</body>
+</html>
