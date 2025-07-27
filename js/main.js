@@ -110,4 +110,61 @@ function handleFormSubmit(e) {
     document.addEventListener('DOMContentLoaded', function () {
         highlightCurrentPage();
         // Rest of your existing code...
-    });
+        // Contact Form Handling
+        document.addEventListener('DOMContentLoaded', function () {
+            const contactForm = document.getElementById('contactForm');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.textContent;
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Sending...';
+
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: 'POST',
+                            body: new FormData(contactForm),
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (response.ok) {
+                            contactForm.reset();
+                            showFormFeedback('Message sent successfully!', true);
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                    } catch (error) {
+                        showFormFeedback('Failed to send message. Please try again.', false);
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalBtnText;
+                    }
+                });
+            }
+
+            function showFormFeedback(message, isSuccess) {
+                // Remove any existing feedback
+                const oldFeedback = document.querySelector('.form-feedback');
+                if (oldFeedback) oldFeedback.remove();
+
+                // Create new feedback element
+                const feedback = document.createElement('div');
+                feedback.className = `form-feedback ${isSuccess ? 'form-success' : 'form-error'}`;
+                feedback.textContent = message;
+
+                // Insert after the form
+                const form = document.getElementById('contactForm');
+                form.parentNode.insertBefore(feedback, form.nextSibling);
+
+                // Auto-hide after 5 seconds
+                setTimeout(() => {
+                    feedback.style.opacity = '0';
+                    setTimeout(() => feedback.remove(), 300);
+                }, 5000);
+            }
+        });
